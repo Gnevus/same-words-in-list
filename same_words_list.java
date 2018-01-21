@@ -26,15 +26,16 @@ import java.util.Map;
 
 public class Solution {
     public static void main(String[] args) throws Exception {
+        //вводим с клавиатуры 20 строк
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         ArrayList<String> words = new ArrayList<String>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 20; i++) {
             words.add(reader.readLine());
         }
-
+        //получаем Map с подсчетами из метода countWords
         Map<String, Integer> map = countWords(words);
-
+        //выводим на экран полученный Map
         for (Map.Entry<String, Integer> pair : map.entrySet()) {
             System.out.println(pair.getKey() + " " + pair.getValue());
         }
@@ -42,10 +43,10 @@ public class Solution {
 
     public static Map<String, Integer> countWords(ArrayList<String> list) {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
-        int count = 0;
-        
+
         //not economical
         /*
+        int count = 0;
         for (String str : list) {
             for (String str2 : list) {
                 if (str == str2) {
@@ -57,6 +58,8 @@ public class Solution {
         }
         */
         
+        //заносим в HashMap данные слово - значение, если такой ключ уже встречается в HashMap,
+        //то увеличиваем value по данному ключу на единицу, если нет, заносим данный ключ и значение 1
         for (String word: list) {
             result.put(word, result.containsKey(word) ? result.get(word) + 1: 1);
         }
